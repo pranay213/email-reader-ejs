@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #4285f4;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .email-header {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .email-subject {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .email-meta {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .meta-label {
+            font-weight: bold;
+            color: #666;
+        }
+
+        .meta-value {
+            color: #333;
+        }
+
+        .email-body {
+            padding: 30px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #333;
+        }
+
+        .html-content {
+            white-space: normal;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 Email Details</h1>
+            <a href="/emails" class="btn back-button">
+                ← Back to Emails
+            </a>
+        </div>
+
+        <div class="email-header">
+            <div class="email-subject">
+                <%= email.subject || '(No Subject)' %>
+            </div>
+
+            <div class="email-meta">
+                <div class="meta-label">From:</div>
+                <div class="meta-value">
+                    <%= email.from %>
+                </div>
+
+                <div class="meta-label">Date:</div>
+                <div class="meta-value">
+                    <%= new Date(email.date).toLocaleString() %>
+                </div>
+
+                <div class="meta-label">ID:</div>
+                <div class="meta-value">
+                    <%= email.id %>
+                </div>
+            </div>
+        </div>
+
+        <div class="email-body">
+            <%- email.html %>
+        </div>
+
+
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Reader - IMAP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #4285f4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: #3367d6;
+        }
+
+        .btn-test {
+            background-color: #28a745;
+        }
+
+        .btn-test:hover {
+            background-color: #218838;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .info {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .code {
+            background-color: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            border: 1px solid #e9ecef;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📧 Email Reader (IMAP)</h1>
+
+        <div class="info">
+            <h3>Setup Instructions:</h3>
+            <ol>
+                <li>Generate an App Password for your Gmail account:
+                    <ul>
+                        <li>Go to your Google Account settings</li>
+                        <li>Security → 2-Step Verification → App passwords</li>
+                        <li>Generate a new app password for "Mail"</li>
+                    </ul>
+                </li>
+                <li>Copy <span class="code">.env.example</span> to <span class="code">.env</span></li>
+                <li>Add your email and app password to the <span class="code">.env</span> file</li>
+                <li>Run <span class="code">npm install</span> and <span class="code">npm start</span></li>
+            </ol>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Important:</strong> Make sure you've configured your email credentials in the .env file before
+            proceeding.
+        </div>
+
+        <p>Test your email connection first, then view your emails:</p>
+
+        <a href="/test-connection" class="btn btn-test" target="_blank">🔧 Test Connection</a>
+        <a href="/emails" class="btn">📧 View Emails</a>
+
+        <div style="margin-top: 30px; font-size: 14px; color: #666;">
+            <p>This app connects directly to your email server using IMAP.</p>
+            <p>Your credentials are used only to access your emails and are not stored permanently.</p>
+        </div>
+    </div>
+</body>
+
+</html>

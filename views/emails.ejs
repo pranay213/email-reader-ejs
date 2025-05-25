@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Gmail Emails</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .email-list {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .email-item {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .email-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .email-item:last-child {
+            border-bottom: none;
+        }
+
+        .email-subject {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .email-from {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .email-date {
+            color: #999;
+            font-size: 12px;
+            float: right;
+        }
+
+        .email-preview {
+            color: #777;
+            font-size: 14px;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #4285f4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background-color: #3367d6;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .search-box {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+
+        .no-emails {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>📧 Your Gmail Emails</h1>
+        <div>
+            <form class="search-form" method="GET" style="display: inline-flex;">
+                <input type="text" name="q" placeholder="Search emails..." class="search-box"
+                    value="<%= typeof query !== 'undefined' ? query : '' %>">
+                <button type="submit" class="btn">Search</button>
+            </form>
+            <a href="/logout" class="btn btn-secondary" style="margin-left: 10px;">Logout</a>
+        </div>
+    </div>
+
+    <div class="email-list">
+        <% if (emails && emails.length> 0) { %>
+            <% emails.forEach(email=> { %>
+                <div class="email-item" onclick="window.location.href='/email/<%= email.id %>'">
+                    <div class="email-date">
+                        <%= new Date(email.date).toLocaleDateString() %>
+                    </div>
+                    <div class="email-subject">
+                        <%= email.subject || '(No Subject)' %>
+                    </div>
+                    <div class="email-from">From: <%= email.from %>
+                    </div>
+                    <div class="email-preview">
+                        <%= email.body %>
+                    </div>
+                </div>
+                <% }) %>
+                    <% } else { %>
+                        <div class="no-emails">
+                            <h3>No emails found</h3>
+                            <p>Try adjusting your search criteria or check back later.</p>
+                        </div>
+                        <% } %>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/emails" class="btn">🔄 Refresh</a>
+    </div>
+</body>
+
+</html>
